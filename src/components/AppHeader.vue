@@ -1,6 +1,9 @@
 <template>
-    <header class="container">
-        <h1 class="my-5"> {{ title }}</h1>
+    <header>
+        <div class="title">
+            <img class="logo" src="/img/bad.png" alt="Logo">
+            <h1 class="my-5"> {{ title }}</h1>
+        </div>
     </header>
 </template>
 
@@ -14,7 +17,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
 h1 {
     color: white;
+}
+
+.logo {
+    height: 40px;
 }
 </style>

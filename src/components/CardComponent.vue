@@ -1,9 +1,15 @@
 <template>
-    <div class="character">
-        <img :src="character.img" :alt="character.name">
-        <p>{{ character.name }}</p>
-        <p>{{ character.status }}</p>
-        <p>{{ character.nickname }}</p>
+    <div class="character" style="height: 450px;">
+        <img :src="character.img" :alt="character.name" class="my-card-img">
+        <div class="text-center">
+            <h5>{{ character.name }}</h5>
+            <div class="other-info">
+                <p>{{ character.category }}</p>
+                <p>{{ character.status }}</p>
+            </div>
+
+        </div>
+
     </div>
 </template>
 
@@ -16,12 +22,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/styles/partials/variables' as*;
+
 .character {
     width: 220px;
+    background-color: $graydark;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
 
-    img {
-        width: 200px;
+    h5 {
+        padding-top: 10px;
+        color: white;
+        text-transform: uppercase;
     }
+}
 
+.other-info {
+    padding-top: 20px;
+    line-height: 5px;
+
+    p {
+        color: gray;
+    }
 }
 </style>
