@@ -1,7 +1,8 @@
 <template>
   <AppHeader title="The Breaking Bad API" />
   <main>
-    <CharacterList :characters="characterList" />
+    <SearchComponent @filteredChar="getCharacters" />
+    <CharacterList />
   </main>
 </template>
 
@@ -9,34 +10,40 @@
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import CharacterList from './components/CharacterList.vue';
+import SearchComponent from './components/SearchComponent.vue';
+import { store } from "./store";
+
 export default {
   components: {
     AppHeader,
-    CharacterList
+    CharacterList,
+    SearchComponent
   },
   data() {
     return {
-      apiURL: 'https://www.breakingbadapi.com/api/characters',
-      characterList: [],
-
+      store,
+      endAPI: "characters"
     }
   },
   methods: {
     getCharacters() {
-      axios.get(this.apiURL).then(
-        (res) => {
-          this.characterList = [...res.data];
-          console.log(this.characterList)
-
-        }
-      ).catch((error) => {
-        console.log(error);
-      })
-    }
+      let options = null;
+      if (store.search.category) {
+        options = {
+          params: {
+            category: store.search.category,
+          },
+        };
+      }
+      const charApiURL = store.apiURL + this.endAPI;
+      axios.get(charApiURL, options).then((res) => {
+        store.characterList = [...res.data];
+      });
+    },
   },
   created() {
-    this.getCharacters()
-  }
+    this.getCharacters();
+  },
 }
 </script>
 

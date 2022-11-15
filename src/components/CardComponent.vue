@@ -1,5 +1,5 @@
 <template>
-    <div class="character" style="height: 450px;">
+    <div class="character" style="height: 460px;">
         <img :src="character.img" :alt="character.name" class="my-card-img">
         <div class="text-center">
             <h5>{{ character.name }}</h5>
@@ -7,7 +7,6 @@
                 <p>{{ character.category }}</p>
                 <p>{{ character.status }}</p>
             </div>
-
         </div>
 
     </div>
@@ -41,7 +40,7 @@ export default {
 
 .other-info {
     padding-top: 20px;
-    line-height: 5px;
+    line-height: 15px;
 
     p {
         color: gray;
